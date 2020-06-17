@@ -2,7 +2,7 @@ package LinkedList;
 
 public class Node<T> {
 
-    private T data;
+    public T data;
     // Getter for Data
     public T getData() {
         return data;
@@ -13,7 +13,7 @@ public class Node<T> {
     }
 
     // Reference for Next node
-    private Node<T> next;
+    public Node<T> next;
     // Getter of Next
     public Node<T> getNext() {
         return next;
@@ -23,7 +23,10 @@ public class Node<T> {
         next = next;
     }
 
-    //Constructor
+    public Node(T dataValue){
+        data = dataValue;
+    }
+    //Constructor Overloading if has nextNode
     public Node(T dataValue, Node<T> nextNode){
         data = dataValue;
         next = nextNode;
