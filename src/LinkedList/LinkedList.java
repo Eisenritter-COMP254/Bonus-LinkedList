@@ -5,6 +5,11 @@ public class LinkedList {
     private Node lastNode;
     private String name; // string like "list" to display
 
+    // Construct empty List with unspecified
+    public LinkedList(){
+        name="Unnamed List";
+        firstNode = lastNode = null;
+    }
     // Construct empty List with specified name
     public LinkedList(String listName){
         name=listName;
@@ -74,7 +79,7 @@ public class LinkedList {
     {
         if (IsEmpty())
         {
-            System.out.println("Empty"+name);
+            System.out.println("Empty "+name);
         }
         else
         {
@@ -93,4 +98,7 @@ public class LinkedList {
         }
     }
 
+    public String getName() {
+        return name;
+    }
 }
