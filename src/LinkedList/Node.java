@@ -12,6 +12,17 @@ public class Node<T> {
         this.data = data;
     }
 
+    // Reference for Previous node
+    public Node<T> prev;
+    // Getter of Next
+    public Node<T> getPrev() {
+        return prev;
+    }
+    // Setter for Next
+    public void setPrev(Node<T> prev) {
+        this.prev = prev;
+    }
+
     // Reference for Next node
     public Node<T> next;
     // Getter of Next
@@ -20,7 +31,7 @@ public class Node<T> {
     }
     // Setter for Next
     public void setNext(Node<T> next) {
-        next = next;
+        this.next = next;
     }
 
     public Node(T dataValue){

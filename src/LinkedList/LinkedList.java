@@ -86,6 +86,23 @@ public class LinkedList {
         }
         return null;
     }
+    public Node SearchPrev(Node node) throws Exceptions{
+        if (IsEmpty()){
+            throw new Exceptions("Empty List",
+                    "The List is empty, please make sure there are items in list first.");
+        }
+        Node current = firstNode;
+
+            while (current!=lastNode){
+                if (current.next == node)
+                    return current;
+                else {
+                    current = current.next;
+                }
+            }
+            return null;
+
+        }
 
     // Search for a node by data in the list
     public<T> Node SearchNode(T data) throws Exceptions{
@@ -95,13 +112,106 @@ public class LinkedList {
         }
         Node current = firstNode;
         // Loop through the list till node is found
-        while (current!=lastNode){
-            if (current.getData() != data) {
+        while (current!=lastNode&&current.next!=null&&!current.getData().equals(data)){
                 current = current.next;
             }
-        }
         return ((current.getData()).equals(data))?current:null;
     }
+
+    // Assignment #1 Addon: Swap Nodes -- Only using Node prev and Node next due to restrictions of singly linked list
+    public<T> void SwapNodes(T data1, T data2) throws Exceptions{
+        if(data1==data2){
+            throw new Exceptions("Same Value",
+                    "The two values searching for are the same, please specify node or input different values"
+                            + "");
+        }
+
+        //Storing all node in Temp Positions
+
+        Node node1Prev = SearchPrev(SearchNode(data1)) ;
+        Node node1 = SearchNode(data1);
+        Node node1Next = SearchNode(data1).next ;
+        Node node2Prev = SearchPrev(SearchNode(data2)) ;
+        Node node2 = SearchNode(data2);
+        Node node2Next = SearchNode(data2).next ;
+
+        // Find Initial Position
+        if(node1!=null) System.out.println(data1+"'s Initial Node Address is: " +node1);
+        if(node2!= null) System.out.println(data2+"'s Initial Node Address is: "+node2);
+
+        if (node1 == firstNode && node2 == lastNode){
+            node2.setNext(node1Next);
+            firstNode = node2;
+            node1.next = null;
+            lastNode =  node1;
+            node2Prev.setNext(node1);
+        }
+        else if(node2 == firstNode && node1 == lastNode){
+            node1.setNext(node2Next);
+            firstNode = node1;
+            node2.next = null;
+            lastNode = node2;
+            node1Prev.setNext(lastNode);
+        }
+        else if (node1==firstNode){
+            if(node1.getNext() == node2){
+                node1.setNext(node2Next);
+                node2.setNext(node1);
+                firstNode = node2;
+            }
+            else{
+            node2.setNext(node1Next);
+            firstNode = node2;
+            node1.setNext(node2Next);
+            node2Prev.setNext(node1);
+        }}
+        else if (node1==lastNode){
+            if(node2.getNext() == node1){
+                node2.setNext(null);
+                node1.setNext(node2);
+                node1Prev.setNext(node1);
+                lastNode = node2;
+            }else{
+            node2.setNext(null);
+            lastNode = node2;
+            node1.setNext(node2Next);
+            node2Prev.setNext(node1);
+            node1Prev.setNext(node2);
+        }}
+        else if (node2 == firstNode){
+            if(node2.getNext() == node1){
+                node2.setNext(node1Next);
+                node1.setNext(node2);
+                firstNode = node1;
+            }
+            else{
+            node1.setNext(node2Next);
+            firstNode = node1;
+            node2.setNext(node1Next);
+            node1Prev.setNext(node2);}
+        }
+        else if (node2 == lastNode){
+            if(node1.getNext() == node2){
+                node1.setNext(null);
+                node2.setNext(node1);
+                node1Prev.setNext(node2);
+                lastNode = node1;
+            }else{
+            node1.setNext(null);
+            lastNode = node1;
+            node2.setNext(node1Next);
+            node1Prev.setNext(node2);
+            node2Prev.setNext(node1);
+            }
+        }
+        else{
+            node1.setNext(node2Next);
+            node2.setNext(node1Next);
+            node1Prev.setNext(node2);
+            node2Prev.setNext(node1);
+        }
+
+        }
 
 
     // Check for empty list
