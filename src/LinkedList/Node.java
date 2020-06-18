@@ -2,7 +2,7 @@ package LinkedList;
 
 public class Node<T> {
 
-    public T data;
+    private T data;
     // Getter for Data
     public T getData() {
         return data;

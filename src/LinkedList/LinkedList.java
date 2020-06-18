@@ -38,7 +38,7 @@ public class LinkedList {
             "The List is empty, please make sure there are items in list first.");
         }
 
-        T removeItem = (T)firstNode.data;
+        T removeItem = (T)firstNode.getData();
         // If first node is the last node, then set it to null, else, the next node becomes the first node.
         firstNode = (firstNode==lastNode)?lastNode=null:firstNode.next;
         return removeItem;
@@ -51,7 +51,7 @@ public class LinkedList {
                     "The List is empty, please make sure there are items in list first.");
         }
 
-        T removeItem = (T)lastNode.data;
+        T removeItem = (T)lastNode.getData();
         // If first node is the last node, then set it to null, else, the next node becomes the first node.
         if(firstNode == lastNode){
             firstNode = lastNode =null;
@@ -68,6 +68,41 @@ public class LinkedList {
 
         return removeItem;
     }
+
+    // Search for a node by node in the list
+    public Node SearchNode(Node node) throws Exceptions{
+        if (IsEmpty()){
+            throw new Exceptions("Empty List",
+                    "The List is empty, please make sure there are items in list first.");
+        }
+        Node current = firstNode;
+        // Loop through the list till node is found
+        while (current!=lastNode){
+            if (current == node)
+                return current;
+            else {
+                current = current.next;
+            }
+        }
+        return null;
+    }
+
+    // Search for a node by data in the list
+    public<T> Node SearchNode(T data) throws Exceptions{
+        if (IsEmpty()){
+            throw new Exceptions("Empty List",
+                    "The List is empty, please make sure there are items in list first.");
+        }
+        Node current = firstNode;
+        // Loop through the list till node is found
+        while (current!=lastNode){
+            if (current.getData() != data) {
+                current = current.next;
+            }
+        }
+        return ((current.getData()).equals(data))?current:null;
+    }
+
 
     // Check for empty list
     public boolean IsEmpty(){
@@ -90,7 +125,7 @@ public class LinkedList {
             // output current node data while not at end of list
             while (current != null)
             {
-                System.out.print(current.data + " ");
+                System.out.print(current.getData() + " ");
                 current = current.next;
             }
 

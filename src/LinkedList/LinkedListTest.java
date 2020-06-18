@@ -1,9 +1,9 @@
 package LinkedList;
 
-import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
 
+// Prompt Test
 public class LinkedListTest {
     public static void main(String[] args) throws Exceptions {
         Scanner s = new Scanner(System.in);
@@ -40,6 +40,18 @@ public class LinkedListTest {
                             case "4":
                                 newList.RemoveFromBack();
                                 break;
+                            case "5":
+                                System.out.print("Please enter data for node you want to search for: ");
+                                var value =s.next();
+                                Node node = newList.SearchNode(value);
+                                if(node==null){
+                                    System.out.println("The Node is not found in the list");
+                                }
+                                else {
+                                    System.out.println("The Node is found at" + node+", " +
+                                            ""+"The value is: " + node.getData());
+                                }
+                                break;
                             default:
                                 endOp = true;
                                 break;
@@ -56,16 +68,18 @@ public class LinkedListTest {
 
     }
 
+    // Displays List Operation Menu
     public static void DisplayListOperationMenu(LinkedList list){
         list.Display();
         System.out.println("1. Add an element to front of list.");
         System.out.println("2. Add an element to end of list.");
         System.out.println("3. Remove an element from front of list.");
         System.out.println("4. Remove an element from back of list.");
+        System.out.println("5. Search for a node.");
         System.out.println("Anything else to stop list operations");
     }
 
-
+    // Default Test 1
     public static void Test1() {
         // Creates Linked Lists and name them
         LinkedList intList = new LinkedList("Integer List");
