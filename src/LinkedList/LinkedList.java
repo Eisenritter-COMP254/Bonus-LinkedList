@@ -5,6 +5,9 @@ public class LinkedList {
     private Node lastNode;
     private String name; // string like "list" to display
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Constructors
+
     // Construct empty List with unspecified
     public LinkedList(){
         name="Unnamed List";
@@ -15,6 +18,9 @@ public class LinkedList {
         name=listName;
         firstNode = lastNode = null;
     }
+
+    // End Constructors
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Getters and Setters
@@ -37,6 +43,11 @@ public class LinkedList {
     // Set Last Node
     public void setLastNode(Node lastNode) {
         this.lastNode = lastNode;
+    }
+
+    // Get Name of the List
+    public String getName() {
+        return name;
     }
 
     // End Getters and Setters
@@ -277,32 +288,41 @@ public class LinkedList {
         return firstNode == null;
     }
 
-
     // Output List contents
     public void Display()
     {
-        if (IsEmpty())
-        {
-            System.out.println("Empty "+name);
-        }
+        if (IsEmpty()){System.out.println(name+" is Empty");}
         else
         {
             System.out.println("The "+name +" is: ");
-
             Node current = firstNode;
-
             // output current node data while not at end of list
             while (current != null)
             {
                 System.out.print(current.getData() + " ");
                 current = current.next;
             }
-
-            System.out.println("\n");
+            //System.out.println("\n");
         }
     }
 
-    public String getName() {
-        return name;
+    // Display Circular List Contents
+    public void DisplayCircular( int iteration){
+        if (IsEmpty()){System.out.println(name+" is Empty");}
+        else
+        {
+            System.out.println("The "+name +" is: ");
+            Node current = firstNode;
+            int counter = 0;
+            // output current node data while not at end of list
+            while (current != null && counter<iteration)
+            {
+                counter = current==lastNode?counter+1:counter+0;
+                System.out.print(current.getData() + " ");
+                current = current.next;
+            }
+            //System.out.println("\n");
+        }
     }
+
 }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class LinkedListTest extends LinkedListOperations{
     public static void main(String[] args) throws Exceptions {
         Scanner s = new Scanner(System.in);
+        System.out.println("\n");
         DisplayTestChoiceMenu();
         char result = s.nextLine().toUpperCase().charAt(0);
         boolean resultValid = false;
@@ -32,6 +33,10 @@ public class LinkedListTest extends LinkedListOperations{
                 case '4':
                     resultValid = true;
                     Test2();
+                    break;
+                case '5':
+                    resultValid = true;
+                    Test3();
                     break;
                 default:
                     resultValid = false;
@@ -99,6 +104,7 @@ public class LinkedListTest extends LinkedListOperations{
             System.out.println("4. Remove an element from back of list.");
             System.out.println("5. Search for a node.");
             System.out.println("6. Swap two nodes.");
+
             System.out.println("Anything else to stop list operations");
         }
 
@@ -109,6 +115,7 @@ public class LinkedListTest extends LinkedListOperations{
         System.out.println("2. Using preloaded string list");
         System.out.println("3. Generates user list");
         System.out.println("4. Concatenating 2 linked lists");
+        System.out.println("5. Circular List Conversion");
         System.out.println("Anything else to stop list operations");
     }
 
@@ -143,12 +150,11 @@ public class LinkedListTest extends LinkedListOperations{
 
         // Test Concatenation for Assignment 1 Exercise 2
         public static void Test2 () {
-            System.out.println("\n");
+            // Creates the Linked Lists
             LinkedList list1 = GenerateLList();
             LinkedList list2 = GenerateLList2();
             LinkedList list3 = new LinkedList("Integer List");
             LinkedList list4 = new LinkedList("Double List");
-
 
             // Generate randomized array
             int[] intArray = GenerateIntArray(10);
@@ -180,6 +186,16 @@ public class LinkedListTest extends LinkedListOperations{
             System.out.println("Combining New List and List 4");
             combinedList.Display();
         }
+
+    // Test Concatenation for Assignment 1 Exercise 2
+    public static void Test3 () {
+        // Creates the Linked Lists
+        LinkedList list1 = GenerateLList();
+        // Display the Lists
+        list1.Display();
+        list1 = ConvertToCircular(list1); // Converts it to a circular linked list
+        list1.DisplayCircular(3); // Display the circular linked list 3 times
+    }
 
         // Generates Random Int Array
         private static int[] GenerateIntArray ( int length){
