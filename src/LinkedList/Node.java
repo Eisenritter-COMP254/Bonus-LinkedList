@@ -42,5 +42,10 @@ public class Node<T> {
         data = dataValue;
         next = nextNode;
     }
-
+    // Constructor for building Doubly Linked List
+    public  Node(T dataValue, Node<T> nextNode, Node<T> prevNode){
+        data = dataValue;
+        next = nextNode;
+        prev = prevNode;
+    }
 }

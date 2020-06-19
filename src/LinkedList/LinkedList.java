@@ -210,8 +210,7 @@ public class LinkedList {
             node1Prev.setNext(node2);
             node2Prev.setNext(node1);
         }
-
-        }
+    }
 
 
     // Check for empty list
