@@ -16,9 +16,44 @@ public class LinkedList {
         firstNode = lastNode = null;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Getters and Setters
+
+    // Get First Node
+    public Node getFirstNode() {
+        return firstNode;
+    }
+
+    // Set First Node
+    public void setFirstNode(Node firstNode) {
+        this.firstNode = firstNode;
+    }
+
+    // Get Last Node
+    public Node getLastNode() {
+        return lastNode;
+    }
+
+    // Set Last Node
+    public void setLastNode(Node lastNode) {
+        this.lastNode = lastNode;
+    }
+
+    // End Getters and Setters
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     // Insert object Node in front
     public<T> void Prepend(T data){
-        firstNode=IsEmpty()?lastNode = new Node(data):new Node(data,firstNode);
+        if (IsEmpty()){
+            firstNode=lastNode = new Node(data);
+
+        }else{
+            firstNode = new Node(data,firstNode);
+            firstNode.getNext().setPrev(firstNode); // Updated with doubly linked list
+        }
+
     }
 
     // Insert object Node at back
@@ -27,7 +62,7 @@ public class LinkedList {
             firstNode = lastNode = new Node(data);
         }
         else {
-            lastNode = lastNode.next= new Node(data);
+            lastNode = lastNode.next= new Node(data,null,lastNode); // Updated for doubly linked list
         }
     }
 
@@ -41,10 +76,12 @@ public class LinkedList {
         T removeItem = (T)firstNode.getData();
         // If first node is the last node, then set it to null, else, the next node becomes the first node.
         firstNode = (firstNode==lastNode)?lastNode=null:firstNode.next;
+        firstNode.setPrev(null);
         return removeItem;
     }
 
-    // Remove last node from List
+    // Remove last node from List -- Singly Linked List, Reenable if working on singly linked list
+    /*
     public <T> T RemoveFromBack() throws Exceptions {
         if (IsEmpty()){
             throw new Exceptions("Empty List",
@@ -67,7 +104,29 @@ public class LinkedList {
         }
 
         return removeItem;
+    } End Method
+    */
+
+    // Remove last node from list -- Doubly Linked List
+    public <T> T RemoveFromBack() throws Exceptions {
+        if (IsEmpty()){
+            throw new Exceptions("Empty List",
+                    "The List is empty, please make sure there are items in list first.");
+        }
+
+        T removeItem = (T)lastNode.getData();
+        // If first node is the last node, then set it to null, else, the next node becomes the first node.
+        if(firstNode == lastNode){
+            firstNode = lastNode =null;
+        }
+        else{
+            lastNode=lastNode.getPrev();
+            lastNode.setNext(null);
+        }
+
+        return removeItem;
     }
+
 
     // Search for a node by node in the list
     public Node SearchNode(Node node) throws Exceptions{
@@ -217,6 +276,7 @@ public class LinkedList {
     public boolean IsEmpty(){
         return firstNode == null;
     }
+
 
     // Output List contents
     public void Display()

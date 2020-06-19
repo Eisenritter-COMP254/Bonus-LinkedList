@@ -3,8 +3,9 @@ package LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
+
 // Prompt Test
-public class LinkedListTest {
+public class LinkedListTest extends LinkedListOperations{
     public static void main(String[] args) throws Exceptions {
         Scanner s = new Scanner(System.in);
         DisplayTestChoiceMenu();
@@ -15,7 +16,7 @@ public class LinkedListTest {
             switch (result) {
                 case '1':
                     Test1();
-                    resultValid = false;
+                    resultValid = true;
                     break;
                 case '2':
                     ListOperationPrompt(GenerateLList(),s);
@@ -27,6 +28,10 @@ public class LinkedListTest {
                     String listName = s.nextLine();
                     LinkedList newList = new LinkedList(listName);
                     ListOperationPrompt(newList,s);
+                    break;
+                case '4':
+                    resultValid = true;
+                    Test2();
                     break;
                 default:
                     resultValid = false;
@@ -103,6 +108,7 @@ public class LinkedListTest {
         System.out.println("1. Using randomly generated integer and double list");
         System.out.println("2. Using preloaded string list");
         System.out.println("3. Generates user list");
+        System.out.println("4. Concatenating 2 linked lists");
         System.out.println("Anything else to stop list operations");
     }
 
@@ -116,6 +122,8 @@ public class LinkedListTest {
             int[] intArray = GenerateIntArray(10);
             double[] dblArray = GenerateDblArray(10, 100, 2);
 
+            System.out.println("\n");
+
             // Insert generate value into end of list (Stack)
             for (int e : intArray) {
                 intList.Postpend(e);
@@ -123,13 +131,54 @@ public class LinkedListTest {
             }
             intList.Display();
 
-            System.out.println("");
+            System.out.println("\n");
             // Insert generated value into beginning of list (Queue)
             for (double e : dblArray) {
                 dblList.Prepend(e);
                 System.out.println(e + " Added to the front of list");
             }
             dblList.Display();
+            System.out.println("\n");
+        }
+
+        // Test Concatenation for Assignment 1 Exercise 2
+        public static void Test2 () {
+            System.out.println("\n");
+            LinkedList list1 = GenerateLList();
+            LinkedList list2 = GenerateLList2();
+            LinkedList list3 = new LinkedList("Integer List");
+            LinkedList list4 = new LinkedList("Double List");
+
+
+            // Generate randomized array
+            int[] intArray = GenerateIntArray(10);
+            double[] dblArray = GenerateDblArray(10, 100, 2);
+
+            // Insert generate value into end of list (Stack)
+            for (int e : intArray) {
+                list3.Postpend(e);
+            }
+            // Insert generated value into beginning of list (Queue)
+            for (double e : dblArray) {
+                list4.Prepend(e);
+            }
+
+            // Display the Lists
+            list1.Display();
+            list2.Display();
+            list3.Display();
+            list4.Display();
+
+            //Testing Operations
+            LinkedList combinedList = Concatenate(list1,list2);
+            System.out.println("Combining List 1 and List2");
+            combinedList.Display();
+            combinedList = Concatenate(list3,combinedList);
+            System.out.println("Combining List 3 and New List");
+            combinedList.Display();
+            combinedList = Concatenate(combinedList,list4);
+            System.out.println("Combining New List and List 4");
+            combinedList.Display();
         }
 
         // Generates Random Int Array
@@ -165,4 +214,19 @@ public class LinkedListTest {
             newList.Postpend("Garret");
             return newList;
         }
+
+    // Placeholder list 2 for testing
+    private static LinkedList GenerateLList2 () {
+        LinkedList newList = new LinkedList("Test List 2");
+        newList.Postpend("Russia");
+        newList.Postpend("China");
+        newList.Postpend("India");
+        newList.Postpend("Egypt");
+        newList.Postpend("Japan");
+        newList.Postpend("US");
+        newList.Postpend("Canada");
+        newList.Postpend("England");
+        return newList;
+    }
+
     }

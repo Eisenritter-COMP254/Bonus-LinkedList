@@ -1,10 +1,16 @@
 package LinkedList;
 
-public class LinkedListOperations {
-    // Assignment #1 Exercise 1
-    // Swap Nodes
+public  class LinkedListOperations {
+    // Assignment #1 Exercise 2
+    // Concatenate two doubly linked list
 
-    public void SwapNodes(LinkedList llist, Node node1, Node node2){
-
+    public static LinkedList Concatenate(LinkedList llist1, LinkedList llist2){
+        // Set the last node's next node of 1st linked list to the first node of 2nd linked list
+        llist1.getLastNode().setNext(llist2.getFirstNode());
+        // Set the first node's previous node to 2nd linked list's last node
+        llist2.getFirstNode().setPrev(llist1.getLastNode());
+        // Resets the last node to the end of 2nd linked list's last node
+        llist1.setLastNode(llist2.getLastNode());
+        return llist1;
     }
 }
