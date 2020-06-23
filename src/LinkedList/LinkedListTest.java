@@ -211,9 +211,10 @@ public class LinkedListTest extends LinkedListOperations{
         // Display the Lists
         list1.Display();
         list1 = ConvertToCircular(list1); // Converts it to a circular linked list
-        LinkedList cloneList = CloneList(list1);
+        LinkedList clonedList = new LinkedList();
+        clonedList =CloneList(list1);
         System.out.println("\n The Cloned List is: ");
-        cloneList.DisplayCircular(1);
+        clonedList.DisplayCircular(3);
 
     }
 

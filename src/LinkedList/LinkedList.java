@@ -1,9 +1,11 @@
 package LinkedList;
 
+// All Node based operation is in this clas
 public class LinkedList {
     private Node firstNode;
     private Node lastNode;
     private String name; // string like "list" to display
+    private int count;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -12,11 +14,13 @@ public class LinkedList {
     public LinkedList(){
         name="Unnamed List";
         firstNode = lastNode = null;
+        count = 0;
     }
     // Construct empty List with specified name
     public LinkedList(String listName){
         name=listName;
         firstNode = lastNode = null;
+        count = 0;
     }
 
     // End Constructors
@@ -45,6 +49,10 @@ public class LinkedList {
         this.lastNode = lastNode;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     // Get Name of the List
     public String getName() {
         return name;
@@ -59,10 +67,12 @@ public class LinkedList {
     public<T> void Prepend(T data){
         if (IsEmpty()){
             firstNode=lastNode = new Node(data);
+            count ++;
 
         }else{
             firstNode = new Node(data,firstNode);
             firstNode.getNext().setPrev(firstNode); // Updated with doubly linked list
+            count++;
         }
 
     }
@@ -71,9 +81,11 @@ public class LinkedList {
     public<T> void Postpend(T data){
         if (IsEmpty()){
             firstNode = lastNode = new Node(data);
+            count++;
         }
         else {
             lastNode = lastNode.next= new Node(data,null,lastNode); // Updated for doubly linked list
+            count++;
         }
     }
 
@@ -88,6 +100,7 @@ public class LinkedList {
         // If first node is the last node, then set it to null, else, the next node becomes the first node.
         firstNode = (firstNode==lastNode)?lastNode=null:firstNode.next;
         firstNode.setPrev(null);
+        count--;
         return removeItem;
     }
 
@@ -129,10 +142,12 @@ public class LinkedList {
         // If first node is the last node, then set it to null, else, the next node becomes the first node.
         if(firstNode == lastNode){
             firstNode = lastNode =null;
+            count--;
         }
         else{
             lastNode=lastNode.getPrev();
             lastNode.setNext(null);
+            count--;
         }
 
         return removeItem;
@@ -281,6 +296,7 @@ public class LinkedList {
             node2Prev.setNext(node1);
         }
     }
+
 
 
     // Check for empty list

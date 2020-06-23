@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.List;
+// All operations that returns a list is in this class
 public  class LinkedListOperations {
     // Assignment #1 Exercise 2
     // Concatenate two doubly linked list
@@ -21,9 +23,29 @@ public  class LinkedListOperations {
         return list;
     }
 
-    // List cloning
+    /*
+    // List cloning -obsolete shallow clone-
     public static LinkedList CloneList(LinkedList list){
         LinkedList clonedList=list;
         return  clonedList;
     }
+    */
+
+    // Assignment #1 Exercise 3
+    // List Cloning - Deep Copy
+    public static LinkedList CloneList(LinkedList list){
+        LinkedList clonedList= new LinkedList();
+        Node current = list.getFirstNode();
+        for (int i=0;i<list.getCount();i++){
+            clonedList.Postpend(current.getData());
+            System.out.println(current);
+            current = current.next;
+        }
+        // Check for whether original list is circular or not
+        if(list.getLastNode().getNext()!=null){
+            ConvertToCircular(clonedList);
+        }
+        return  clonedList;
+    }
+
 }
