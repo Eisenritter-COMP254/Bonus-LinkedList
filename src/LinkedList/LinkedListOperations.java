@@ -21,4 +21,9 @@ public  class LinkedListOperations {
         return list;
     }
 
+    // List cloning
+    public static LinkedList CloneList(LinkedList list){
+        LinkedList clonedList=list;
+        return  clonedList;
+    }
 }

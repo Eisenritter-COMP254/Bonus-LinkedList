@@ -38,6 +38,10 @@ public class LinkedListTest extends LinkedListOperations{
                     resultValid = true;
                     Test3();
                     break;
+                case '6':
+                    resultValid = true;
+                    Test4();
+                    break;
                 default:
                     resultValid = false;
                     System.out.println("Please enter a valid response.");
@@ -116,6 +120,7 @@ public class LinkedListTest extends LinkedListOperations{
         System.out.println("3. Generates user list");
         System.out.println("4. Concatenating 2 linked lists");
         System.out.println("5. Circular List Conversion");
+        System.out.println("6. List Cloning");
         System.out.println("Anything else to stop list operations");
     }
 
@@ -195,6 +200,21 @@ public class LinkedListTest extends LinkedListOperations{
         list1.Display();
         list1 = ConvertToCircular(list1); // Converts it to a circular linked list
         list1.DisplayCircular(3); // Display the circular linked list 3 times
+    }
+
+    // Cloning Test
+    // Test Concatenation for Assignment 1 Exercise 2
+    public static void Test4 () {
+        // Creates the Linked Lists
+        LinkedList list1 = GenerateLList();
+        System.out.println("The Original List is: ");
+        // Display the Lists
+        list1.Display();
+        list1 = ConvertToCircular(list1); // Converts it to a circular linked list
+        LinkedList cloneList = CloneList(list1);
+        System.out.println("\n The Cloned List is: ");
+        cloneList.DisplayCircular(1);
+
     }
 
         // Generates Random Int Array
